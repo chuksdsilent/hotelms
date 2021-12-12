@@ -88,8 +88,8 @@
             encode: true,
             success: function(data) {
 
-                console.log("coming data is", data.data.role)
-                if(data.success && data.data.role === "1"){
+                console.log("coming data is", data.data.activate)
+                if(data.success && data.data.activate === 1){
                     console.log("second level worked")
                     window.location.href = host + "/dashboard";
                 }else{
