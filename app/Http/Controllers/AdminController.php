@@ -57,6 +57,7 @@ class AdminController extends Controller
             "address" => "required",
         ],[]);
 
+        $request->request->add(["activate" => 1]);
         $request->request->add(["user_id" =>  Auth::id()]);
         Staff::create($request->except(["_token"]));
         
@@ -64,6 +65,7 @@ class AdminController extends Controller
         $user->username = $request->get("username");
         $user->password = Hash::make("123456");
         $user->role = 2;
+        $user->activate = 1;
         $user->save();
 
 

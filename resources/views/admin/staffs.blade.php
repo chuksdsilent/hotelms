@@ -25,7 +25,7 @@
                         <td>{{$item->phone}}</td>
                         <td>{{$item->address}}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format("d M, Y")}}</td>
-                        <td><a href="{{url("admin/staff/activate/". $item->username)}}" style="background-color: green; padding: .1rem 1rem; font-size: 12px;">{{ $item->activate == 1 ? "Deactivate" : "Activate"}}</a></td>
+                        <td><a href="{{url("admin/staff/activate/". $item->username)}}" style="background-color: green; padding: .1rem 1rem; font-size: 12px;">{{ \App\Models\User::where("username", $item->username)->value("activate") == 1 ? "Deactivate" : "Activate"}}</a></td>
                     </tr>
                 @endforeach
             </table>

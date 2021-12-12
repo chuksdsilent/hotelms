@@ -38,16 +38,22 @@
                     <tr>
                         <td>{{$key + 1}}</td>
                         <td>{{$desc[$key]}}</td>
-                        <td>&#8358; {{number_format($unit_price[$key], 2)}}</td>
+                        <td>{{number_format($unit_price[$key])}}</td>
                         <td>&#8358;{{number_format($item, 2)}}</td>
                     </tr>
                 @endforeach
                     <td>Total</td>
                     <td></td>
-                    <td>&#8358; {{number_format(array_sum($amount_paid, 2))}}</td>
+                    <td></td>
+                    <td>&#8358; {{number_format(array_sum($amount_paid), 2)}}</td>
             </table>
 
         </div>
     </div>
+    <div class="no-print">
+        <a href="{{url("staff/dashboard")}}">Create new Bar Kitchen Docket</a>
+        <button onclick="window.print()">Print</button>
+    </div>
+    
 </body>
 </html>

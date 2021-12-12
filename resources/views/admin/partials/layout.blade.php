@@ -27,6 +27,7 @@
                     <a href="{{asset("admin/captin-order")}}">Captin Order</a>
                     <a href="{{asset("admin/reservation-billing")}}">Reservation Billing</a>
                     <a href="{{asset("admin/staff/create")}}">Create Staff</a>
+                    <a href="{{asset("admin/staffs")}}">View Staffs</a>
                     <a href="{{asset("admin/change-password")}}">Change Password</a>
                     <a href="{{asset("admin/logout")}}">Logout</a>
                 </div>

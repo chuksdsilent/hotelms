@@ -21,7 +21,7 @@
                     <th>Cashier Name</th>
                     <th>Description</th>
                     <th>Unit Price</th>
-                    <th>Amount Paid</th>
+                    <th>Amount</th>
                     <th>Date</th>
                     <th>Action</th>
                 </thead>

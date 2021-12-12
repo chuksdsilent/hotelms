@@ -9,6 +9,7 @@ use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class StaffController extends Controller
 {
@@ -134,7 +135,8 @@ class StaffController extends Controller
         ],[]);
 
             $request->request->add(["user_id" =>  Auth::id()]);
-           
+            $rb_id = Str::random(20);
+            $request->request->add(["rb_id" => $rb_id]);
             $registered = ReservationBilling::create($request->except(["_token"]));
             if($registered) {
                 return view("staff.bill_receipt")

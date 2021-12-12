@@ -39,7 +39,7 @@
             <div class="col-md-4 col-xs-12 col-sm-12 col-12">
                 <div class="item col-five">
                     <a href="{{url("admin/captin-order?param=today")}}">
-                        <h3>{{\App\Models\CaptinOrder::whereDate('created_at', '=',\Carbon\Carbon::now()->toDateString())->sum("unit_price")}}</h3>
+                    <h3>{{\App\Models\CaptinOrder::whereDate('created_at', '=',\Carbon\Carbon::now()->toDateString())->sum("unit_price")}}</h3>
                         <div>Made from Captin Order Today</div>
                     </a>
                 </div>

@@ -79,5 +79,9 @@
 
         </div>
     </div>
+    <div class="no-print">
+     <a href="{{url("staff/reservation-billing")}}">Create new Billing Reservation</a>
+     <button onclick="window.print()">Print</button>
+    </div>
 </body>
 </html>

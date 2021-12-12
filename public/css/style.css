@@ -132,8 +132,11 @@ label{
 .receipt{
     width: 303px;
     border: 2px solid #000;
-}
 
+}
+.receipt table {
+    font-size: 11px;
+}
 h4{
     border: 2px solid #000;
     width: 200px;
@@ -164,4 +167,11 @@ table.captin-order{
 table.captin-order th{
     border: 1px solid #000;
     padding: 1px 5px;
+}
+@media print
+{    
+    .no-print
+    {
+        display: none !important;
+    }
 }

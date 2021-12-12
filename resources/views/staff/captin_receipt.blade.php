@@ -75,6 +75,10 @@
 
         </div>
     </div>
-    <a href="{{url("staff/captin-order")}}" class="create">Create New Captin Order</a>
+    
+    <div class="no-print">
+        <a href="{{url("staff/captin-order")}}">Create new Billing Reservation</a>
+        <button onclick="window.print()">Print</button>
+       </div>
 </body>
 </html>
