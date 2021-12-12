@@ -53,6 +53,10 @@ class LoginController extends Controller
         return view("admin.changePassword");
     }
 
+    public function changeStaffPassword(){
+        return view("staff.changePassword");
+    }
+
     public function saveChangePassword(Request $request){
 
         $request->validate([

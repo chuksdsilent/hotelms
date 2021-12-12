@@ -33,7 +33,7 @@ Route::prefix('staff')->group(function () {
     Route::get('reservation-billing', [StaffController::class, "reservationBilling"]);
     Route::post('reservation-billing', [StaffController::class, "saveReservationBilling"]);
     Route::get('logout', [LoginController::class, "logout"]);
-    Route::get('change-password', [LoginController::class, "changePassword"]);
+    Route::get('change-password', [LoginController::class, "changeStaffPassword"]);
 
 });
 

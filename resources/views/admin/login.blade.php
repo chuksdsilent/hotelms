@@ -49,6 +49,7 @@
                     <div class="card-body">
                         <div class="form">
                             <div class="alert alert-danger" id="alert">Invalid Username/Password</div>
+                            <div class="alert alert-danger" id="unauthorized">Unauthorized Access</div>
                             <h3>Login</h3>
                             <hr />
                             <div class="form-group mb-4">
@@ -72,6 +73,7 @@
 <script>
 
     $("#alert").hide();
+    $("#unauthorized").hide();
     $("#processing").hide();
     $("#login").on("click", function(){
         $("#processing").show();
@@ -87,12 +89,20 @@
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             encode: true,
             success: function(data) {
-
-                console.log("coming data is", data.data.activate)
-                if(data.success && data.data.activate === 1){
-                    console.log("second level worked")
-                    window.location.href = host + "/dashboard";
+                     
+                if(data.success === true){
+                    console.log("the role is ", data.data.role)
+                    if( data.data.role === "1"){
+                    // console.log("resirecting");
+                        window.location.href = host + "/dashboard";
+                    }else{
+                        console.log("user deactivated");
+                        $("#unauthorized").show();
+                    }
+                    
+                  
                 }else{
+                    console.log("test kit",e)
                     $("#alert").show();
                 }
             },
