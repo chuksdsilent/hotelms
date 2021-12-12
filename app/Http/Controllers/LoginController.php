@@ -17,7 +17,7 @@ class LoginController extends Controller
             "password" => "required"
         ]);
         $loginCredentials = ["username" => $request->get("username"), "password" => $request->get("password")];
-        try{
+        // try{
             if(Auth::attempt($loginCredentials)){
 
                 return response()->json([
@@ -31,9 +31,9 @@ class LoginController extends Controller
                     'message' => 'Invalid Credentials'
                 ], Response::HTTP_OK);
             }
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->get], Response::HTTP_BAD_REQUEST);
-        }
+        // } catch (\Throwable $th) {
+        //     return response()->json(['error' => $th->get], Response::HTTP_BAD_REQUEST);
+        // }
     }
 
     public function dashboard(){
