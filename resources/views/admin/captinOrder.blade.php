@@ -11,6 +11,10 @@
 </div>
     <div class="card">
         <div class="card-body">
+            
+            @if (Session::has("msg"))
+                <div class="alert alert-success">{{Session::get("msg")}}</div>
+            @endif
             <h3>Captin Order</h3>
             <table class="table table-striped">
                 <thead>
@@ -22,9 +26,9 @@
                     <th>Cover</th>
                     <th>Unit Price</th>
                     <th>Name of Waitress</th>
-                    <th>Amount</th>
+                    
                     <th>Date</th>
-                    <th>Action</th>
+                    <th colspan="3">Action</th>
                 </thead>
                 @foreach ($captinOrder as $key => $item)
                     <tr>
@@ -36,15 +40,16 @@
                         <td>{{$item->cover}}</td>
                         <td>{{$item->unit_price}}</td>
                         <td>{{$item->name_of_waitress}}</td>
-                        <td>{{$item->amount}}</td>
-                        <td>{{$total}}</td>
+                        <td>{{\Carbon\Carbon::parse($item->created_at)->format("d M, Y")}}</td>
                         <td><a href="{{url("/admin/captin-order/". $item->id)}}" style="color:black">View</a></td>
+                        <td><a href="{{url("/admin/edit/captin-order/". $item->id)}}" style="color:black">Edit</a></td>
+                        <td><a href="{{url("/admin/delete/captin-order/". $item->id)}}" style="color:black">Delete</a></td>
 
                     </tr>
                 @endforeach
                 
                 <tr>
-                    <td colspan="8">Total</td>
+                    <td colspan="6">Total</td>
                     <td>N{{$total}}</td>
                     <td></td>
                 </tr>

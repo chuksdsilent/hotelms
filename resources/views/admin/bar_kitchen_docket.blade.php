@@ -11,6 +11,9 @@
 </div>
     <div class="card">
         <div class="card-body">
+            @if (Session::has("msg"))
+                <div class="alert alert-success">{{Session::get("msg")}}</div>
+            @endif
             <h3>Bar Kitchen Docket</h3>
             <table class="table table-striped">
                 <thead>
@@ -23,7 +26,7 @@
                     <th>Unit Price</th>
                     <th>Amount</th>
                     <th>Date</th>
-                    <th>Action</th>
+                    <th colspan="3">Action</th>
                 </thead>
                 @foreach ($barKitchenDocket as $key => $item)
                     <tr>
@@ -37,6 +40,8 @@
                         <td>{{$item->amount_paid}}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format("d M, Y")}}</td>
                         <td><a href="{{url("/admin/bar-kitchen-docket/". $item->id)}}" style="color:black">View</a></td>
+                        <td><a href="{{url("/admin/edit/bar-kitchen-docket/". $item->id)}}" style="color:black">Edit</a></td>
+                        <td><a href="{{url("/admin/delete-bar-kitchen-docket/". $item->id)}}" style="color:black">Delete</a></td>
 
                     </tr>
                 @endforeach                

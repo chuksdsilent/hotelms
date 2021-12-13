@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -86,15 +87,63 @@ class AdminController extends Controller
                 ->with("barKitchenDocket", $data)->with("total", $total);
     }
 
+    public function editBarKitchenDocket($id){
+        $item =  BarKitchenDocket::findorfail($id);
+        return view("admin.editBarKitchenDocket")->with("data", $item);;
+    }
+    public function editCaptinOrder($id){
+        $item =  CaptinOrder::findorfail($id);
+        return view("admin.editCaptinOrder")->with("data", $item);;
+    }
+    public function editReservationBilling($id){
+        $item =  ReservationBilling::findorfail($id);
+        return view("admin.editReservationBilling")->with("data", $item);;
+    }
+    public function updateBarKitchenDocket(Request $request, $id){
+        $item =  BarKitchenDocket::findorfail($id);
+        $item->fill($request->all())
+        ->save();
+        return Redirect::to('admin/bar-kitchen-docket')->with("msg", "Bar Kitchen Docket Updated Successfully. ");
+    }
+    public function updateCaptinOrder(Request $request, $id){
+        $item =  CaptinOrder::findorfail($id);
+        $item->fill($request->all())
+        ->save();
+        return Redirect::to('admin/captin-order')->with("msg", "Bar Kitchen Docket Updated Successfully. ");
+    }
+    public function updateReservationBilling(Request $request, $id){
+        $item =  ReservationBilling::findorfail($id);
+        $item->fill($request->all())
+        ->save();
+        return Redirect::to('admin/reservation-billing')->with("msg", "Reservation Billing Updated Successfully. ");
+    }
+    public function deleteBarKitchenDocket(Request $request, $id){
+        $item =  BarKitchenDocket::findorfail($id);
+        $item->delete();
+        return Redirect::to('admin/bar-kitchen-docket')->with("msg", "Bar Kitchen Docket Deleted Successfully. ");
+     
+    }
+    public function deleteReservationBilling(Request $request, $id){
+        $item =  ReservationBilling::findorfail($id);
+        $item->delete();
+        return Redirect::to('admin/reservation-billing')->with("msg", "Reservation Billing Deleted Successfully. ");
+     
+    }
+    public function deleteCaptinOrder(Request $request, $id){
+        $item =  CaptinOrder::findorfail($id);
+        $item->delete();
+        return Redirect::to('admin/captin-order')->with("msg", "Captin Order Deleted Successfully. ");
+     
+    }
     public function captinOrder(Request $request){
         
         if($request->get("param") == "today"){
             $dt = Carbon::now()->toDateString();
             $data = CaptinOrder::orderBy("created_at", "DESC")->whereDate('created_at', '=',$dt)->get();
-            $total = CaptinOrder::orderBy("created_at", "DESC")->whereDate('created_at', '=',$dt)->sum("amount");
+            $total = CaptinOrder::orderBy("created_at", "DESC")->whereDate('created_at', '=',$dt)->sum("unit_price");
         }else{
             $data = CaptinOrder::orderBy("created_at", "DESC")->get();
-            $total = CaptinOrder::orderBy("created_at", "DESC")->sum("amount");
+            $total = CaptinOrder::orderBy("created_at", "DESC")->sum("unit_price");
         }
         return view("admin.captinOrder")
                 ->with("captinOrder", $data)->with("total", $total);

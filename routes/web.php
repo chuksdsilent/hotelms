@@ -41,8 +41,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function(){
         return view("admin.login");
     });
+    
     Route::get('staff/create', [AdminController::class, "createStaff"]);
-    Route::post('staff/create', [AdminController::class, "saveCreateStaff"]);
+    Route::get('edit/bar-kitchen-docket/{i}', [AdminController::class, "editBarKitchenDocket"]);
+    Route::put('edit/bar-kitchen-docket/{i}', [AdminController::class, "updateBarKitchenDocket"]);    
+    Route::get('delete-bar-kitchen-docket/{i}', [AdminController::class, "deleteBarKitchenDocket"]);
+    Route::get('edit/reservation-billing/{i}', [AdminController::class, "editReservationBilling"]);
+    Route::get('delete-reservation-billing/{i}', [AdminController::class, "deleteReservationBilling"]);
+    Route::put('edit/captin-order/{i}', [AdminController::class, "updateCaptinOrder"]);
+    Route::get('edit/captin-order/{i}', [AdminController::class, "editCaptinOrder"]);
+    Route::get('delete/captin-order/{i}', [AdminController::class, "deleteCaptinOrder"]);
+
     Route::get('staffs', [AdminController::class, "staffs"]);
     Route::get('change-password', [LoginController::class, "changePassword"]);
     Route::post('login', [LoginController::class, "login"]);
